@@ -652,4 +652,8 @@ JOIN sys.dm_exec_sessions AS s
 ON c.session_id = s.session_id   
 WHERE c.session_id = @@SPID -- @@SPID returns your current session SPID
 
+SELECT name, type, type_desc
+FROM sys.system_objects
+WHERE name LIKE 'dm_%'
+ORDER BY name
 /*30-32 group assignment in pdf file/*
