@@ -1,0 +1,91 @@
+{
+	"name": "dataflow_repair",
+	"properties": {
+		"folder": {
+			"name": "dataflow_movie"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_movie_bronze_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "bronzeParquet"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_movie_bronze_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "bronzeUpdate"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_movie_silver_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "silverInsert"
+				}
+			],
+			"transformations": [
+				{
+					"name": "alterRow1"
+				},
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Id as short,",
+				"          Title as string,",
+				"          Overview as string,",
+				"          OriginalLanguage as string,",
+				"          Price as double,",
+				"          ReleaseDate as string,",
+				"          Budget as double,",
+				"          Revenue as double,",
+				"          RunTime as short,",
+				"          Tagline as string,",
+				"          ImdbUrl as string,",
+				"          TmdbUrl as string,",
+				"          PosterUrl as string,",
+				"          BackdropUrl as string,",
+				"          CreatedDate as string,",
+				"          CreatedBy as string,",
+				"          UpdatedDate as string,",
+				"          UpdatedBy as string,",
+				"          Status as string,",
+				"          ingestTime as timestamp,",
+				"          ingestDate as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'parquet') ~> bronzeParquet",
+				"bronzeParquet alterRow(updateIf(Status=='Quarantined')) ~> alterRow1",
+				"alterRow1 derive(RunTime = abs(RunTime)) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> bronzeUpdate",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> silverInsert"
+			]
+		}
+	}
+}

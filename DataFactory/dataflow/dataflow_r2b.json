@@ -1,0 +1,82 @@
+{
+	"name": "dataflow_r2b",
+	"properties": {
+		"folder": {
+			"name": "dataflow_movie"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_movie_raw_json",
+						"type": "DatasetReference"
+					},
+					"name": "raw"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_movie_bronze_parquet",
+						"type": "DatasetReference"
+					},
+					"name": "bronze"
+				}
+			],
+			"transformations": [
+				{
+					"name": "addMetadata"
+				},
+				{
+					"name": "flatten1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          movie as (BackdropUrl as string, Budget as double, CreatedBy as string, CreatedDate as string, Id as short, ImdbUrl as string, OriginalLanguage as string, Overview as string, PosterUrl as string, Price as double, ReleaseDate as string, Revenue as double, RunTime as short, Tagline as string, Title as string, TmdbUrl as string, UpdatedBy as string, UpdatedDate as string, genres as (id as short, name as string)[])[]",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'arrayOfDocuments') ~> raw",
+				"flatten1 derive(Status = 'New',",
+				"          ingestTime = currentTimestamp(),",
+				"          ingestDate = dayOfMonth(currentTimestamp())) ~> addMetadata",
+				"raw foldDown(unroll(movie),",
+				"     mapColumn(",
+				"          Id = movie.Id,",
+				"          Title = movie.Title,",
+				"          Overview = movie.Overview,",
+				"          OriginalLanguage = movie.OriginalLanguage,",
+				"          Price = movie.Price,",
+				"          ReleaseDate = movie.ReleaseDate,",
+				"          Budget = movie.Budget,",
+				"          Revenue = movie.Revenue,",
+				"          RunTime = movie.RunTime,",
+				"          Tagline = movie.Tagline,",
+				"          ImdbUrl = movie.ImdbUrl,",
+				"          TmdbUrl = movie.TmdbUrl,",
+				"          PosterUrl = movie.PosterUrl,",
+				"          BackdropUrl = movie.BackdropUrl,",
+				"          CreatedDate = movie.CreatedDate,",
+				"          CreatedBy = movie.CreatedBy,",
+				"          UpdatedDate = movie.UpdatedDate,",
+				"          UpdatedBy = movie.UpdatedBy,",
+				"          genres = movie.genres",
+				"     ),",
+				"     skipDuplicateMapInputs: false,",
+				"     skipDuplicateMapOutputs: false) ~> flatten1",
+				"addMetadata sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'parquet',",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> bronze"
+			]
+		}
+	}
+}
