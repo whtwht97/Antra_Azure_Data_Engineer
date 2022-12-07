@@ -1,0 +1,64 @@
+{
+	"name": "pl_wwi_master",
+	"properties": {
+		"activities": [
+			{
+				"name": "pl_oltp_to_ods_auto",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_oltp_to_ods_auto",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ods_parquet",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_oltp_to_ods_auto",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ods_to_parquet",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "pl_ods_to_integration",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "pl_ods_parquet",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "pl_ods_to_integration",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"folder": {
+			"name": "pl_wwi"
+		},
+		"annotations": []
+	}
+}
