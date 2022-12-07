@@ -1,0 +1,132 @@
+{
+	"name": "ds_wwiods_stockitems_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ODS/StockItems",
+				"fileSystem": "wwi"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "StockItemID",
+				"type": "INT32"
+			},
+			{
+				"name": "StockItemName",
+				"type": "UTF8"
+			},
+			{
+				"name": "SupplierID",
+				"type": "INT32"
+			},
+			{
+				"name": "ColorID",
+				"type": "INT32"
+			},
+			{
+				"name": "UnitPackageID",
+				"type": "INT32"
+			},
+			{
+				"name": "OuterPackageID",
+				"type": "INT32"
+			},
+			{
+				"name": "Brand",
+				"type": "UTF8"
+			},
+			{
+				"name": "Size",
+				"type": "UTF8"
+			},
+			{
+				"name": "LeadTimeDays",
+				"type": "INT32"
+			},
+			{
+				"name": "QuantityPerOuter",
+				"type": "INT32"
+			},
+			{
+				"name": "IsChillerStock",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "Barcode",
+				"type": "UTF8"
+			},
+			{
+				"name": "TaxRate",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "UnitPrice",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "RecommendedRetailPrice",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "TypicalWeightPerUnit",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "MarketingComments",
+				"type": "UTF8"
+			},
+			{
+				"name": "InternalComments",
+				"type": "UTF8"
+			},
+			{
+				"name": "Photo",
+				"type": "BINARY"
+			},
+			{
+				"name": "CustomFields",
+				"type": "UTF8"
+			},
+			{
+				"name": "Tags",
+				"type": "UTF8"
+			},
+			{
+				"name": "SearchDetails",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastEditedBy",
+				"type": "INT32"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "INT96"
+			},
+			{
+				"name": "ValidTo",
+				"type": "INT96"
+			}
+		]
+	}
+}

@@ -1,0 +1,30 @@
+{
+	"name": "ds_wwiods_watermark",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WWISqlDatabaseODS",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "WatermarkValue",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "watermarktable"
+		}
+	}
+}

@@ -1,0 +1,152 @@
+{
+	"name": "ds_wwiods_customers_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ODS/Customers",
+				"fileSystem": "wwi"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "INT32"
+			},
+			{
+				"name": "CustomerName",
+				"type": "UTF8"
+			},
+			{
+				"name": "BillToCustomerID",
+				"type": "INT32"
+			},
+			{
+				"name": "CustomerCategoryID",
+				"type": "INT32"
+			},
+			{
+				"name": "BuyingGroupID",
+				"type": "INT32"
+			},
+			{
+				"name": "PrimaryContactPersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "AlternateContactPersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "DeliveryMethodID",
+				"type": "INT32"
+			},
+			{
+				"name": "DeliveryCityID",
+				"type": "INT32"
+			},
+			{
+				"name": "PostalCityID",
+				"type": "INT32"
+			},
+			{
+				"name": "CreditLimit",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "AccountOpenedDate",
+				"type": "DATE"
+			},
+			{
+				"name": "StandardDiscountPercentage",
+				"type": "DECIMAL",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "IsStatementSent",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsOnCreditHold",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "PaymentDays",
+				"type": "INT32"
+			},
+			{
+				"name": "PhoneNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "FaxNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryRun",
+				"type": "UTF8"
+			},
+			{
+				"name": "RunPosition",
+				"type": "UTF8"
+			},
+			{
+				"name": "WebsiteURL",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryAddressLine1",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryAddressLine2",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryPostalCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryLocation",
+				"type": "UTF8"
+			},
+			{
+				"name": "PostalAddressLine1",
+				"type": "UTF8"
+			},
+			{
+				"name": "PostalAddressLine2",
+				"type": "UTF8"
+			},
+			{
+				"name": "PostalPostalCode",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastEditedBy",
+				"type": "INT32"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "INT96"
+			},
+			{
+				"name": "ValidTo",
+				"type": "INT96"
+			}
+		]
+	}
+}

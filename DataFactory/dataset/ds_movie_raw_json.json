@@ -1,0 +1,110 @@
+{
+	"name": "ds_movie_raw_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"containerName": {
+				"type": "string",
+				"defaultValue": "jsonmovies"
+			}
+		},
+		"folder": {
+			"name": "ds_movie"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": {
+					"value": "@dataset().containerName",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"movie": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Id": {
+								"type": "integer"
+							},
+							"Title": {
+								"type": "string"
+							},
+							"Overview": {
+								"type": "string"
+							},
+							"Tagline": {
+								"type": "string"
+							},
+							"Budget": {
+								"type": "number"
+							},
+							"Revenue": {
+								"type": "number"
+							},
+							"ImdbUrl": {
+								"type": "string"
+							},
+							"TmdbUrl": {
+								"type": "string"
+							},
+							"PosterUrl": {
+								"type": "string"
+							},
+							"BackdropUrl": {
+								"type": "string"
+							},
+							"OriginalLanguage": {
+								"type": "string"
+							},
+							"ReleaseDate": {
+								"type": "string"
+							},
+							"RunTime": {
+								"type": "integer"
+							},
+							"Price": {
+								"type": "number"
+							},
+							"CreatedDate": {
+								"type": "string"
+							},
+							"UpdatedDate": {
+								"type": "null"
+							},
+							"UpdatedBy": {
+								"type": "null"
+							},
+							"CreatedBy": {
+								"type": "null"
+							},
+							"genres": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+											"type": "integer"
+										},
+										"name": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,38 @@
+{
+	"name": "ds_wwiods_tableList",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "tableList2.json",
+				"fileSystem": "wwi"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"TABLE_NAME": {
+					"type": "string"
+				},
+				"WaterMark_Column": {
+					"type": "string"
+				},
+				"TableType": {
+					"type": "string"
+				},
+				"StoredProcedureNameForMergeOperation": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

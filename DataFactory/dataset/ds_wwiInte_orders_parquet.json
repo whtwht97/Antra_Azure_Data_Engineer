@@ -1,0 +1,39 @@
+{
+	"name": "ds_wwiInte_orders_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"containerName": {
+				"type": "string",
+				"defaultValue": "wwi"
+			},
+			"directoryName": {
+				"type": "string",
+				"defaultValue": "Integration/orders_Integration_parquet"
+			}
+		},
+		"folder": {
+			"name": "ds_wwi_integration"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "@dataset().directoryName",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().containerName",
+					"type": "Expression"
+				}
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

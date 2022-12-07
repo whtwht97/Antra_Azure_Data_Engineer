@@ -1,0 +1,127 @@
+{
+	"name": "ds_wwidw_sale_fact",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "WWISqlDatabaseDW",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_dw"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Sale Key",
+				"type": "bigint",
+				"precision": 19
+			},
+			{
+				"name": "City Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Customer Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Bill To Customer Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Stock Item Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Invoice Date Key",
+				"type": "date"
+			},
+			{
+				"name": "Delivery Date Key",
+				"type": "date"
+			},
+			{
+				"name": "Salesperson Key",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WWI Invoice ID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Package",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Unit Price",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Tax Rate",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 3
+			},
+			{
+				"name": "Total Excluding Tax",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Tax Amount",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Profit",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Total Including Tax",
+				"type": "decimal",
+				"precision": 18,
+				"scale": 2
+			},
+			{
+				"name": "Total Dry Items",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Total Chiller Items",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "Lineage Key",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "Fact",
+			"table": "Sale"
+		}
+	}
+}

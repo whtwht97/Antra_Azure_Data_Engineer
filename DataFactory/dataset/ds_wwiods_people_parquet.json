@@ -1,0 +1,108 @@
+{
+	"name": "ds_wwiods_people_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ODS/People",
+				"fileSystem": "wwi"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "PersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "FullName",
+				"type": "UTF8"
+			},
+			{
+				"name": "PreferredName",
+				"type": "UTF8"
+			},
+			{
+				"name": "SearchName",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsPermittedToLogon",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "LogonName",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsExternalLogonProvider",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "HashedPassword",
+				"type": "BINARY"
+			},
+			{
+				"name": "IsSystemUser",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsEmployee",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "IsSalesperson",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "UserPreferences",
+				"type": "UTF8"
+			},
+			{
+				"name": "PhoneNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "FaxNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "UTF8"
+			},
+			{
+				"name": "Photo",
+				"type": "BINARY"
+			},
+			{
+				"name": "CustomFields",
+				"type": "UTF8"
+			},
+			{
+				"name": "OtherLanguages",
+				"type": "UTF8"
+			},
+			{
+				"name": "LastEditedBy",
+				"type": "INT32"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "INT96"
+			},
+			{
+				"name": "ValidTo",
+				"type": "INT96"
+			}
+		]
+	}
+}

@@ -1,0 +1,88 @@
+{
+	"name": "ds_wwiods_orders_parquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "ODS/Orders",
+				"fileSystem": "wwi"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": [
+			{
+				"name": "OrderID",
+				"type": "INT32"
+			},
+			{
+				"name": "CustomerID",
+				"type": "INT32"
+			},
+			{
+				"name": "SalespersonPersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "PickedByPersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "ContactPersonID",
+				"type": "INT32"
+			},
+			{
+				"name": "BackorderOrderID",
+				"type": "INT32"
+			},
+			{
+				"name": "OrderDate",
+				"type": "DATE"
+			},
+			{
+				"name": "ExpectedDeliveryDate",
+				"type": "DATE"
+			},
+			{
+				"name": "CustomerPurchaseOrderNumber",
+				"type": "UTF8"
+			},
+			{
+				"name": "IsUndersupplyBackordered",
+				"type": "BOOLEAN"
+			},
+			{
+				"name": "Comments",
+				"type": "UTF8"
+			},
+			{
+				"name": "DeliveryInstructions",
+				"type": "UTF8"
+			},
+			{
+				"name": "InternalComments",
+				"type": "UTF8"
+			},
+			{
+				"name": "PickingCompletedWhen",
+				"type": "INT96"
+			},
+			{
+				"name": "LastEditedBy",
+				"type": "INT32"
+			},
+			{
+				"name": "LastEditedWhen",
+				"type": "INT96"
+			}
+		]
+	}
+}

@@ -1,0 +1,31 @@
+{
+	"name": "SinkParquet",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"folderName": {
+				"type": "string"
+			}
+		},
+		"folder": {
+			"name": "ds_wwi_ods"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": {
+					"value": "ODS/@{dataset().folderName}",
+					"type": "Expression"
+				},
+				"fileSystem": "wwi"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}
