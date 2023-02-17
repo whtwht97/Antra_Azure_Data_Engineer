@@ -1,7 +1,7 @@
 
 USE WideWorldImporters;
 
-/*1.List of Persons¡¯ full name, all their fax and phone numbers, as well as the phone number and fax of the company they are working for (if any)*/
+/*1.List of PersonsÂ¡Â¯ full name, all their fax and phone numbers, as well as the phone number and fax of the company they are working for (if any)*/
 SELECT 
 	p.FullName, 
 	p.FaxNumber,
@@ -15,7 +15,7 @@ LEFT JOIN
 ON 
 	p.PersonId = c.PrimaryContactPersonID OR p.PersonID = c.AlternateContactPersonID;
 
-/*2.If the customer's primary contact person has the same phone number as the customer¡¯s phone number, list the customer companies*/
+/*2.If the customer's primary contact person has the same phone number as the customerÂ¡Â¯s phone number, list the customer companies*/
 SELECT 
 	c.CustomerName
 FROM
@@ -82,7 +82,7 @@ LEFT JOIN Application.StateProvinces AS sp
 ON Cities.StateProvinceID = sp.StateProvinceID
 WHERE sp.StateProvinceName NOT IN ('Alabama', 'Georgia') AND YEAR(o.OrderDate) = 2014;
 
-/*7.List of States and Avg dates for processing (confirmed delivery date ¨C order date)*/
+/*7.List of States and Avg dates for processing (confirmed delivery date Â¨C order date)*/
 SELECT
 	sp.StateProvinceName,
 	AVG(DATEDIFF(day, o.OrderDate, CONVERT(DATE,i.ConfirmedDeliveryTime))) AS AvgProcessDays 
@@ -98,7 +98,7 @@ ON Cities.StateProvinceID = sp.StateProvinceID
 GROUP BY sp.StateProvinceName
 ORDER BY sp.StateProvinceName;
 
-/*8.List of States and Avg dates for processing (confirmed delivery date ¨C order date) by month*/
+/*8.List of States and Avg dates for processing (confirmed delivery date Â¨C order date) by month*/
 SELECT
 	sp.StateProvinceName,
 	MONTH(o.OrderDate) AS month,
@@ -151,7 +151,7 @@ LEFT JOIN sold AS s
 ON s.StockItemID = p.StockItemID
 WHERE QuantityPurchased > QuantitySold;
 
-/*10.List of Customers and their phone number, together with the primary contact person¡¯s name, to whom we did not sell more than 10  mugs (search by name) in the year 2016*/
+/*10.List of Customers and their phone number, together with the primary contact personÂ¡Â¯s name, to whom we did not sell more than 10  mugs (search by name) in the year 2016*/
 WITH CTE AS (
 	SELECT
 		sub1.CustomerID
@@ -213,7 +213,7 @@ ON Countries.CountryID = sp.CountryID
 LEFT JOIN Application.People AS p ON p.PersonID = c.PrimaryContactPersonID
 WHERE o.OrderDate = '2014-07-01';
 
-/*13.List of stock item groups and total quantity purchased, total quantity sold, and the remaining stock quantity (quantity purchased ¨C quantity sold)*/
+/*13.List of stock item groups and total quantity purchased, total quantity sold, and the remaining stock quantity (quantity purchased Â¨C quantity sold)*/
 WITH Purchased AS(
 	SELECT 
 		sg.StockGroupName,
@@ -245,7 +245,7 @@ SELECT
 FROM Purchased LEFT JOIN Sold
 ON Purchased.StockGroupName = Sold.StockGroupName
 
-/*14.List of Cities in the US and the stock item that the city got the most deliveries in 2016. If the city did not purchase any stock items in 2016, print ¡°No Sales¡±.*/
+/*14.List of Cities in the US and the stock item that the city got the most deliveries in 2016. If the city did not purchase any stock items in 2016, print Â¡Â°No SalesÂ¡Â±.*/
 WITH CTE1 AS (
 	SELECT ol.StockItemID, c.DeliveryCityID, COUNT(*) AS Delivery
 	FROM Sales.OrderLines AS ol
@@ -320,7 +320,7 @@ CREATE VIEW StockQuanlityByYear AS
 	FOR years IN ([2013],[2014],[2015],[2016],[2017]) 
 	) AS pivotTable;
 
-/*19.Create a view that shows the total quantity of stock items of each stock group sold (in orders) by year 2013-2017. [Year, Stock Group Name1, Stock Group Name2, Stock Group Name3, ¡­ , Stock Group Name10]*/
+/*19.Create a view that shows the total quantity of stock items of each stock group sold (in orders) by year 2013-2017. [Year, Stock Group Name1, Stock Group Name2, Stock Group Name3, Â¡Â­ , Stock Group Name10]*/
 CREATE VIEW StockQuanlityByYear2 AS
 	SELECT 
 		Years, [Clothing], [USB Novelties], [Computing Novelties], [Novelty Items],[T-Shirts], [Mugs],[Furry Footwear],[Toys], [Packaging Materials]
